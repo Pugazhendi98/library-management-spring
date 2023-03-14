@@ -1,0 +1,153 @@
+<!doctype html>
+<html  xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+     
+     <style>
+     
+     .col-md-8 {
+             height:400px;
+            overflow-y: scroll;
+              }
+              
+      .col-md-2 {
+            height:auto;
+            
+              }
+              
+        .center {
+            display: grid;
+  justify-content: center;
+  align-content: center;
+              }
+     
+     </style> 
+          
+ 
+    <title>Member Console</title>
+  </head>
+  <body  >
+    <br>
+    
+
+<nav class="navbar navbar-expand-lg navbar-primary bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand"  >Tyfone Library</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" >Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/searchbooks}" target="_blank">Search books</a>
+        </li>
+       
+        
+        
+      </ul>
+                  
+    </div>
+    <div class="text-warning">
+   
+     <span class="p-3"><b ><label class= "text-light"  th:text="${member.username} + '  |  ID - '+${member.id}"></label></b>
+   </span>
+    <a th:href ="@{/logout/{id}(id=${member.id})}"><button class="btn btn-outline-danger pull-right"  type="button">Logout</button></a>
+    </div>
+   
+    
+  </div>
+</nav>
+    
+    <br>
+    
+    
+    
+    <div class="container">
+    <br>
+    
+     <div class="row p-2 " > 
+     
+     
+     	<div class="col-md-8 m-3 border border-primary rounded " data-spy="scroll">
+     	
+     	<h2><label class=" center text-secondary"><b>MyBooks </b></label></h2>
+     	<hr>
+     	<table class="table table-striped overflow-auto" >
+  <thead >
+    <tr>
+      <th >Book_id</th>
+      <th >Title</th>
+      <th >Author</th>
+      <th >Publication</th>
+      <th >Issued_Date</th>
+      <th >Return_Date</th>
+      
+    </tr>
+  </thead>
+  <tbody >
+    <tr th:each="book : ${books}">
+            <td><span th:text="${book.book_Id}"> </span></td>
+            <td><span th:text="${book.book_title}">  </span></td>
+            <td><span th:text="${book.author}">  </span></td>
+            <td><span th:text="${book.publication}">  </span></td>
+            <td><span th:text="${book.issue_date}"></span></td>
+            <td><span th:text="${book.return_date}"> </span></td>
+            
+        </tr>
+  </tbody>
+</table>        
+        
+   	</div>
+     	
+     <div class="col-md-2 m-3 ">
+     
+     <div class="border border-warning rounded">
+       
+     <h5><label class=" p-2 center text-success"><b> Fine Amount</b></h5>
+     <hr>
+     <h3><label class=" p-3 center text-danger" th:text="'Rs.'+${member.fine}"><b></b></h3>
+     </div>
+    
+     </div>
+     
+          
+     </div>
+       
+    </div>
+    
+    <div style="background-color:#292929; height: 80px;text-align: center; " id="contact">
+      
+     <div style="color: darkgrey; margin: 9px; padding-top: 10px;">
+            
+           Contact
+           <br>
+         <a style="color: darkgrey; text-decoration:none" href="mailto:tyfonelibrary@gmail.com" target="_blank">
+                      tyfonelibrary@gmail.com  </a>
+            
+          <span>|</span>
+           +91-9876543210
+               </div>
+    
+    
+    </div>
+    
+    
+   
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+   
+  </body>
+</html>

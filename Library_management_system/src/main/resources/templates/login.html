@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" media="all" 
+          href="../../css/style.css" th:href="@{/css/style.css}" />
+     
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+     <link th:href="@{/css/style.css}" rel="stylesheet" />
+   
+   <style>
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.bg-image {
+  /* The image used */
+  background-image: url("https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=853&q=80'); filter: blur(8px)");
+  
+  /* Add the blur effect */
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+  
+  /* Full height */
+  height: 100%; 
+  
+  /* Center and scale the image nicely */
+  background-position: right;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Position text in the middle of the page/image */
+.bg-text {
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+  color: white;
+  font-weight: bold;
+  border: 3px solid #f1f1f1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 40%;
+  padding: 20px;
+  text-align: left;
+}
+</style>
+   
+   
+   
+   
+      <title>Login</title>
+</head>
+<body  >
+
+
+  <div class="bg-image" ></div>
+  
+  <div  >
+  
+  <div class="container-fluid ">
+   <div class="row">
+ 
+    
+    <div class="col-md-9  "> 
+    
+    
+      <form class="  bg-text" action="#" th:action="@{/login}" th:object="${login}" method="post" >
+      <h2> Tyfone Library </h2>
+     <hr>
+     
+      <h3 class="center">Please Log In</h3>
+      
+      
+      <label for="email"><b>Email-Id</b></label><span> </span> <span id="lblError" style="color: red"></span>
+      <input type="text" id="email_id" onkeyup="ValidateEmail();" placeholder="Enter Email-id" name="username" required>
+
+      <label for="psw"><b>Password</b></label>
+      <input  id="pwd" type="password" placeholder="Enter Password" name="password" required>
+
+      
+      <input type="checkbox" onclick="showpwd()">Show Password
+      
+       <div class="warning center">
+              <p th:text="${error}"/>
+       </div>
+      
+
+      <div class="clearfix">
+       
+        <button type="submit" class="signupbtn center">Login</button>
+        <a  th:href="@{/member/signup}" ><button type="button" id="signupbttn" class="buttonca" > Sign Up</button></a>
+      </div>
+   
+     
+  </form>
+      </div>
+     </div>
+  </div>
+  
+
+  </div>
+  
+ <div style="background-color:#292929; height: 80px;text-align: center; " id="contact">
+      
+     <div style="color: darkgrey; margin: 9px; padding-top: 10px;">
+            
+           Contact
+           <br>
+         <a style="color: darkgrey; text-decoration:none" href="mailto:tyfonelibrary@gmail.com" target="_blank">
+                      tyfonelibrary@gmail.com  </a>
+            
+          <span>|</span>
+           +91-9876543210
+               </div>
+    
+    
+    </div>
+
+<script type="text/javascript"> 
+
+
+
+function ValidateEmail() {
+    var email = document.getElementById("email_id").value;
+    var lblError = document.getElementById("lblError");
+    lblError.innerHTML = "";
+    var expr = /^([a-z0-9]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+    if (!expr.test(email)) {
+    	
+    	document.getElementById("pwd").disabled=true;
+    	
+    	document.getElementById("signupbttn").disabled=true;
+        lblError.innerHTML = "Invalid email address.";
+    }
+    if (expr.test(email)) {
+    	
+    	
+    	document.getElementById("pwd").disabled=false;
+    	document.getElementById("signupbttn").disabled=false;
+        lblError.innerHTML = "";
+    }
+    
+    
+}
+
+function showpwd() {
+	  var x = document.getElementById("pwd");
+	  if (x.type === "password") {
+	    x.type = "text";
+	  } else {
+	    x.type = "password";
+	  }
+	}
+
+
+</script>
+ 
+ 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+   integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+
+
+</body>
+
+</html>

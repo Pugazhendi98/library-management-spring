@@ -1,0 +1,150 @@
+<!doctype html>
+<html  xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title> Welcome Librarian!</title>
+  </head>
+  <body  >
+    <br>
+    
+
+<nav class="navbar navbar-expand-lg navbar-secondary bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand bg-dark"  >Tyfone Library</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href ="@{/searchbooks}" target="_blank">Search books</a>
+        </li>
+       
+       <!--book -->
+         <li class="nav-item dropdown bg-dark">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+           Book
+          </a>
+          <ul class="dropdown-menu bg-light text-primary" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item text-primary" th:href ="@{/addbook}" target="_blank"> Add Book</a></li>
+            <li><a class="dropdown-item text-primary" th:href ="@{/updatebook}" target="_blank">Update Book</a></li>            
+            <li><a class="dropdown-item text-primary" th:href ="@{/deletebook}" target="_blank">Delete Book</a></li>
+          </ul>
+        </li>
+        
+         <!--User-->
+         <li class="nav-item dropdown text-primary">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+           Member
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item text-primary" th:href ="@{/issuebook}" target="_blank">Issue book</a></li>
+            <li><a class="dropdown-item text-primary" th:href ="@{/returnbook}" target="_blank">Return Book</a></li>
+            <li><a class="dropdown-item text-primary" th:href ="@{/removemember}" target="_blank">Remove Member</a></li>
+            <li><a class="dropdown-item text-primary" th:href ="@{/viewmembers}" target="_blank">View Members</a></li>            
+           
+          </ul>
+        </li>
+        
+      </ul>
+                 
+    </div>
+    <div class="text-warning">
+    
+    Welcome
+     <span class="p-3"><b ><label class="text-light" th:text="${admin.username} + '  |  ID - '+${admin.id}"></label></b>
+   </span>
+    <a th:href ="@{/logout/{id}(id=${admin.id})}"><button class="btn btn-outline-danger pull-right"  type="button">Logout</button></a>
+    </div>
+   
+    
+  </div>
+</nav>
+    
+    <br>
+    
+   
+    
+
+    
+    
+    <div class="container">
+    <br>
+    
+     <div class="row p-2"> 
+     
+     
+     	<div class="col m-3 border border-warning rounded  ">
+     	
+     	<div class="text-center text-success">
+     	 <h3 class="p-3">Total Books</h3>
+     	 <hr>
+     	 <h3><label class=" p-3 center text-primary" th:text="${booksCount}"><b></b></h3>
+     	 
+     	</div>
+     	
+     	
+     	
+     	
+    
+        
+   	</div>
+     	
+     <div class="col m-3 border border-danger rounded">
+    <div class="text-center text-success">
+     	 <h3 class="p-3">Total Members</h3>
+     	  <hr>
+     	 <h3><label class=" p-3 center text-primary" th:text="${membersCount}"><b></b></h3>
+     	</div>
+     	
+     </div>
+     
+      <div class="col m-3 border border-info rounded">
+     
+     <div class="text-center text-success">
+     	 <h3 class="p-3">Books Issued</h3>
+     	<hr>
+     	 <h3><label class=" p-3 center text-primary" th:text="${booksIssued}"><b></b></h3>
+     	</div>
+     	
+     	
+     	
+     	
+     	
+     <div></div>
+     </div>    
+     
+     
+     </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+   
+  </body>
+</html>

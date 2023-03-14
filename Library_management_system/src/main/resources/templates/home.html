@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Tyfone Library</title>
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" media="all" 
+          href="../../css/style.css" th:href="@{/css/gtvg.css}" />
+          
+           <link th:href="@{/css/style.css}" rel="stylesheet" />
+           
+          
+  </head>
+</head>
+<body>
+ <div>
+
+      <div class=class="modal fade-in-up">
+          <section class="login_content">
+            <form class="modal-content" action="#" th:action="@{/login}" th:object="${login}" method="post" >
+             <div class="container">
+              <h1>Login</h1>
+              <div>
+                <input  type="text"  placeholder="Username"   name="username" required/>
+              </div>
+              <div>
+                <input  type="password" placeholder="Password"  name="password" required/>
+              </div>
+              <div>
+                <button type="submit" class="btn btn-default submit" >submit</button>
+              </div>
+              
+              <div>
+              <p th:text="${error}"/>
+              </div>
+              
+             
+             </div>
+              
+            </form>
+            
+             <div>
+              <a th:href="@{/createacc}"  /> Create Account</a>
+              </div>
+            
+          </section>
+        </div>
+      </div>
+
+
+
+</body>
+</html>

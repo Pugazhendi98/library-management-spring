@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" media="all" 
+          href="../../css/style.css" th:href="@{/css/style.css}" />
+     
+     <link th:href="@{/styles/css/style.css}" rel="stylesheet" />
+    
+     <style>
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.bg-image {
+  /* The image used */
+  background-image: url("https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=853&q=80'); filter: blur(8px)");
+  
+  /* Add the blur effect */
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+  
+  /* Full height */
+  height: 100%; 
+  
+  /* Center and scale the image nicely */
+  background-position: right;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Position text in the middle of the page/image */
+.bg-text {
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+  color: white;
+  font-weight: bold;
+  border: 3px solid #f1f1f1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 40%;
+  height:auto ;
+  padding: 20px;
+  text-align: left;
+}
+</style>
+    
+     
+      <title>Sign up</title>
+</head>
+<body>
+
+ <div class="bg-image" ></div>
+ 
+<div class=" bg-text " >
+  
+  <form  action="#" th:action="@{/member/add}" th:object="${user}" method="post" >
+    <div class="container p-5">
+      <h1>Sign Up</h1>
+      <p>Please fill in this form to create an account.</p>
+      <hr>
+      <label for="name"><b>Email-Id</b></label>
+      <span></span><span id="lblError" style="color: red"></span>
+      <input type="text"  onkeyup="ValidateEmail();" placeholder="Email-Id" th:field="*{email_id}"  required>
+      
+      <label for="name"><b>User Name</b></label>
+      <input type="text" placeholder="User Name" th:field="*{username}" required>
+
+      <label for="psw"><b>Password</b></label>  <span></span><span id="pwdError" style="color: red"> </span>
+      <input type="password"   onkeyup="validatepwd();" placeholder="Enter Password" th:field="*{userpassword}" required>
+
+      <label for="psw-repeat"><b>Repeat Password</b></label>  <span></span><span id="cmpError" style="color: red"></span>
+      <input type="password" id="repwd" onkeyup="comparepwd();" placeholder="Repeat Password" name="psw-repeat" required>
+      
+      <input type="checkbox" onclick="showpwd()">Show Password
+      
+      
+        
+       <div class="warning center">
+              <p th:text="${error}"/>
+       </div>
+
+      <div class="clearfix">
+       <a  th:href="@{/}" > <button type="button"  class="cancelbtn">Cancel</button></a>
+        <button type="submit" id="signupbttn" class="signupbtn">Sign Up</button>
+      </div>
+    </div>
+  </form>
+  
+</div>
+
+<br>
+ <div style="background-color:#292929; height: 80px;text-align: center; " id="contact">
+      
+     <div style="color: darkgrey; margin: 9px; padding-top: 10px;">
+            
+           Contact
+           <br>
+         <a style="color: darkgrey; text-decoration:none" href="mailto:tyfonelibrary@gmail.com" target="_blank">
+                      tyfonelibrary@gmail.com  </a>
+            
+          <span>|</span>
+           +91-9876543210
+               </div>
+    
+    
+    </div>
+
+<script type="text/javascript">
+    function ValidateEmail() {
+        var email = document.getElementById("email_id").value;
+        var lblError = document.getElementById("lblError");
+        lblError.innerHTML = "";
+        var expr = /^([a-z0-9]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+        if (!expr.test(email)) {
+        	document.getElementById("username").disabled=true;
+        	document.getElementById("userpassword").disabled=true;
+        	document.getElementById("repwd").disabled=true;
+        	document.getElementById("signupbttn").disabled=true;
+            lblError.innerHTML = "Invalid email address.";
+        }
+        if (expr.test(email)) {
+        	document.getElementById("username").disabled=false;
+        	document.getElementById("userpassword").disabled=false;
+        	document.getElementById("repwd").disabled=false;
+        	document.getElementById("signupbttn").disabled=false;
+            lblError.innerHTML = "";
+        }
+        
+        
+    }
+    
+    function comparepwd() {
+        var pwd = document.getElementById("userpassword").value;
+        var repwd = document.getElementById("repwd").value;
+        var cmpError = document.getElementById("cmpError");
+       
+        
+        if (pwd!=repwd) {
+        	document.getElementById("signupbttn").disabled=true;
+            cmpError.innerHTML = "Passwords do not match";
+        }
+        else if (pwd=repwd) 
+        	{
+        	document.getElementById("signupbttn").disabled=false;
+        	cmpError.innerHTML = "";
+        	}
+    }
+    
+    function validatepwd() {
+        var pwd = document.getElementById("userpassword").value;
+       
+        var pwdError = document.getElementById("pwdError");
+        
+        
+        if(pwd.length<=5) {
+        	document.getElementById("repwd").disabled=true; 
+        	document.getElementById("signupbttn").disabled=true;
+        	pwdError.innerHTML = "Paasword must contain atleast 6 characters";
+        } else {
+        	document.getElementById("repwd").disabled=false;
+        	document.getElementById("signupbttn").disabled=false;
+        	pwdError.innerHTML = "";
+        }
+        
+    } 
+        function showpwd() {
+        	  var pwd = document.getElementById("userpassword");
+        	  var repwd = document.getElementById("repwd");
+        	  if (pwd.type === "password" && repwd.type === "password") {
+        	    pwd.type = "text";
+        	    repwd.type = "text";
+        	  } else {
+        	    pwd.type = "password";
+        	    repwd.type = "password";
+        	  }
+        	}
+        
+        function validate()
+        {
+        	 var email = document.getElementById("lblError");
+       	     var repwd = document.getElementById("cmpError");
+       	  var pwd = document.getElementById("pwderror").value;
+       	  
+       	  if(pwd!="" || repwd!="" || email!="")
+       		  {
+       		  alert("Please Enter Correct Details");
+       		  }
+        }
+        
+        
+    
+</script>
+
+</body>
+</html>
